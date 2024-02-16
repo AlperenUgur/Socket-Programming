@@ -1,4 +1,4 @@
-import socket
+import ReverseShell
 import sys
 
 # Create aSocket
@@ -9,11 +9,11 @@ def create_socket():
         global s
         host=""
         port = 8888
-        s = socket.socket()
-    except socket.error as msg:
-        print("socket creation error"+ str(msg))
+        s = ReverseShell.socket()
+    except ReverseShell.error as msg:
+        print("ReverseShell creation error"+ str(msg))
 
-#Binding the socket and listening for connections
+#Binding the ReverseShell and listening for connections
 def bind_socket():
     try:
         global host
@@ -24,10 +24,10 @@ def bind_socket():
 
         s.bind((host,port))
         s.listen(5)
-    except socket.error as msg:
-        print("socket binding error"+str(msg)+ "\n" + "retrying...")
+    except ReverseShell.error as msg:
+        print("ReverseShell binding error"+str(msg)+ "\n" + "retrying...")
         bind_socket()
-#Establish connection with a client(socket must be listening)
+#Establish connection with a client(ReverseShell must be listening)
 def socket_accept():
     conn,address = s.accept()
     print("connection has been established | " + " IP " + address[0]+ " | PORT " + str(address[1]))
